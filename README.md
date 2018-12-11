@@ -72,6 +72,21 @@ Role Variables
 | openvpn_client_to_client           | boolean | true, false  | false                                          | Set to true if you want clients to access each other.                                                                                                             |
 | openvpn_masquerade_not_snat        | boolean | true, false  | false                                          | Set to true if you want to set up MASQUERADE instead of the default SNAT in iptables.                                                 |
 
+Email Variables
+---------------
+
+| Variable                  | Type    | Choices      | Default                                        | Comment                                                                                                                                                           |
+|---------------------------|---------|--------------|------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| openvpn_email_config_file | boolean | true, false  | false                                          | Whether to email users in the `clients` list. Emails will be automatically constructed as `{{ item }}@{{ openvpn_mail_to_domain }}`.                              |
+| openvpn_mail_host         | string  |              |                                                | Email host (e.g. smtp.gmail.com)                                                                                                                                  |
+| openvpn_mail_port         | int     |              |                                                | Email host port (e.g. 587)                                                                                                                                        |
+| openvpn_mail_user         | string  |              |                                                | Log-in for email.                                                                                                                                                 |
+| openvpn_mail_pass         | string  |              |                                                |                                                                                                                                                                   |
+| openvpn_mail_subject      | string  |              | VPN Configuration                              |                                                                                                                                                                   |
+| openvpn_mail_body         | string  |              | See attached for your VPN configuration.       |                                                                                                                                                                   |
+| openvpn_mail_from         | string  |              | `{{ openvpn_mail_user }}`                      | Equivalent to email log-in by default.                                                                                                                            |
+| openvpn_mail_to_domain    | string  |              |                                                | Email domain after '@' (e.g. gmail.com)                                                                                                                           |
+
 LDAP object
 
 | Variable            | Type   | Choices      | Default                                 | Comment                                                                                        |

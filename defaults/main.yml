@@ -42,6 +42,12 @@ openvpn_masquerade_not_snat: false
 openvpn_addl_server_options: []
 openvpn_addl_client_options: []
 
+# email defaults
+openvpn_email_config_file: false
+openvpn_mail_subject: VPN Configuration
+openvpn_mail_body: See attached for your VPN configuration.
+openvpn_mail_from: '{{ openvpn_mail_user }}'
+
 # Used in firewalld
 firewalld_default_interface_zone: public
 

@@ -23,3 +23,20 @@
   shell: "{{ iptables_save_command }}"
   when: ansible_os_family == 'Debian' or ansible_os_family == 'RedHat'
   listen: "save iptables"
+
+- name: mail config file
+  mail:
+    host: '{{ openvpn_mail_host }}'
+    port: '{{ openvpn_mail_port }}'
+    username: '{{ openvpn_mail_user }}'
+    password: '{{ openvpn_mail_pass }}'
+    subject: '{{ openvpn_mail_subject }}'
+    body: '{{ openvpn_mail_body }}'
+    from: '{{ openvpn_mail_from }}'
+    to: '{{ item }}@{{ openvpn_mail_to_domain }}'
+    attach: '{{ openvpn_ovpn_dir }}/{{item}}-{{inventory_hostname}}.ovpn'
+    charset: utf8
+  with_items: '{{ additional_certs_to_add.stdout_lines }}'
+  when:
+    - openvpn_email_config_file
+    - additional_certs_to_add | length > 0

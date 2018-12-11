@@ -85,3 +85,11 @@
   with_items:
     - "{{clients}}"
     - "{{ additional_certs_to_add.stdout_lines }}"
+  when: not openvpn_email_config_file
+
+- name: trigger email handler
+  command: /bin/true
+  notify: mail config file
+  when:
+    - openvpn_email_config_file
+    - additional_certs_to_add | length > 0
